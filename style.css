@@ -1,0 +1,739 @@
+/* 
+ * Foxontherun — Custom Premium Editorial Stylesheet
+ * Brand Values: Selective, Senior, Data-grounded, Long Horizon
+ * Design Tone: Understated, Serif-led, Restrained Palette, Generous Whitespace
+ */
+
+/* ==========================================================================
+   1. Design Tokens & CSS Custom Properties
+   ========================================================================== */
+:root {
+  /* Color Palette (Restrained, Editorial) */
+  --bg-color: #F7F6F2;          /* Warm, elegant off-white (not pure white) */
+  --bg-white: #FFFFFF;          /* Pure white for scrolled header */
+  --text-primary: #1A1A1A;      /* Deep slate, near-black for high readability */
+  --text-secondary: #6B6B66;    /* Warm, rich gray for secondary descriptions */
+  --accent-color: #B23A2C;      /* Deep editorial red / Oxblood (used sparingly) */
+  --border-color: #E2E0D9;      /* Subtle dividing line matching the warm palette */
+  
+  /* Typography Families */
+  --font-serif: 'EB Garamond', Georgia, serif;
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  
+  /* Layout Spacing & Structure */
+  --container-max-width: 1100px;
+  --header-desktop-height: 90px;
+  --header-scrolled-height: 70px;
+  --header-mobile-height: 70px;
+  
+  /* System transitions */
+  --transition-smooth: 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-header: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ==========================================================================
+   2. Reset & Base Settings
+   ========================================================================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--header-scrolled-height);
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  font-size: 18px; /* Generous body text size on desktop */
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size-adjust: from-font; /* Modern fallback normalization */
+  overflow-x: hidden;
+}
+
+/* Focus styles for keyboard navigation (WCAG AA Compliance) */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px dashed var(--accent-color);
+  outline-offset: 4px;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color var(--transition-smooth);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* ==========================================================================
+   3. Typography Hierarchy
+   ========================================================================== */
+h1, h2, h3, h4 {
+  font-family: var(--font-serif);
+  font-weight: 400; /* Editorial thin/medium weights */
+  line-height: 1.4;
+  letter-spacing: 0.02em;
+  color: var(--text-primary);
+}
+
+/* Headline in Hero */
+.hero-headline {
+  font-size: clamp(2.2rem, 5vw, 4.4rem);
+  line-height: 1.4;
+  letter-spacing: 0.03em;
+  font-weight: 400;
+  max-width: 900px;
+}
+
+/* Section Title */
+.section-title {
+  font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+  line-height: 1.4;
+  letter-spacing: 0.02em;
+}
+
+/* Practice and Principle Card Titles */
+.practice-card-title,
+.principle-title {
+  font-size: 1.35rem;
+  line-height: 1.3;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+/* Base Body Texts */
+p {
+  color: var(--text-primary);
+}
+
+.hero-subheadline {
+  font-family: var(--font-sans);
+  font-size: clamp(1.05rem, 2vw, 1.25rem);
+  line-height: 1.6;
+  color: var(--text-secondary);
+  max-width: 650px;
+}
+
+.section-intro {
+  font-family: var(--font-serif);
+  font-size: clamp(1.3rem, 2.5vw, 1.7rem);
+  line-height: 1.45;
+  font-style: italic;
+  color: var(--text-primary);
+  max-width: 800px;
+}
+
+.practice-card-body,
+.principle-body {
+  font-size: 0.95rem; /* Clean text sizes below base */
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+/* Large client sentence */
+.clients-descriptive-text {
+  font-family: var(--font-serif);
+  font-size: clamp(1.4rem, 3vw, 2.1rem);
+  line-height: 1.45;
+  color: var(--text-primary);
+  max-width: 800px;
+}
+
+/* About descriptions */
+.about-paragraph {
+  font-size: 1.05rem;
+  line-height: 1.65;
+  color: var(--text-primary);
+}
+.about-paragraph + .about-paragraph {
+  margin-top: 24px;
+}
+
+/* ==========================================================================
+   4. Common Layout & Grid Containers
+   ========================================================================== */
+.container {
+  width: 100%;
+  max-width: var(--container-max-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+.section {
+  padding-top: 160px;
+  padding-bottom: 160px;
+  border-top: 1px solid var(--border-color);
+}
+
+/* Asymmetric 12-column Grid for Premium Editorial Feel */
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  column-gap: 80px;
+  row-gap: 48px;
+}
+
+.section-aside {
+  grid-column: span 4;
+}
+
+.section-main {
+  grid-column: span 8;
+}
+
+/* Subtle Link Underline Hover Micro-Animation */
+.underline-anim {
+  position: relative;
+  display: inline-block;
+}
+
+.underline-anim::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 1px;
+  bottom: -2px;
+  left: 0;
+  background-color: var(--accent-color);
+  transform-origin: bottom right;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.underline-anim:hover::after,
+.nav-link.active::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+/* Accent Line (Fine Red Rule) */
+.accent-rule {
+  border: 0;
+  height: 1px;
+  background-color: var(--accent-color);
+  margin: 40px 0;
+}
+
+/* ==========================================================================
+   5. Sticky Header Styling
+   ========================================================================== */
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--header-desktop-height);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid var(--border-color);
+  transition: height var(--transition-header), background-color var(--transition-header), border-color var(--transition-header);
+  background-color: transparent;
+}
+
+/* Native scroll-driven transition if supported */
+@supports ((animation-timeline: scroll()) and (animation-range: 0% 100%)) {
+  .site-header {
+    animation: shrinkHeader auto linear both;
+    animation-timeline: scroll(block root);
+    animation-range: 0px 80px;
+  }
+  
+  @keyframes shrinkHeader {
+    to {
+      height: var(--header-scrolled-height);
+      background-color: var(--bg-white);
+      border-color: var(--border-color);
+    }
+  }
+}
+
+/* Class-based fallback scroll styling (toggled via JS) */
+.site-header.scrolled {
+  height: var(--header-scrolled-height);
+  background-color: var(--bg-white);
+  border-color: var(--border-color);
+}
+
+.header-container {
+  width: 100%;
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Brand Wordmark (No Symbol, Serif) */
+.brand-logo {
+  font-family: var(--font-serif);
+  font-size: 1.45rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  transition: opacity var(--transition-smooth);
+}
+
+.brand-logo:hover {
+  opacity: 0.8;
+}
+
+/* Desktop Anchor Navigation */
+.nav-list {
+  display: flex;
+  gap: 36px;
+}
+
+.nav-link {
+  font-family: var(--font-sans);
+  font-size: 0.88rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-primary);
+  padding: 4px 0;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: var(--accent-color);
+}
+
+/* Mobile Hamburger Menu Toggle (Visual-free, clean line design) */
+.mobile-menu-toggle {
+  display: none; /* Hidden on desktop */
+  background: none;
+  border: none;
+  cursor: pointer;
+  width: 24px;
+  height: 18px;
+  position: relative;
+  z-index: 1001;
+}
+
+.menu-bar {
+  display: block;
+  width: 100%;
+  height: 1.5px;
+  background-color: var(--text-primary);
+  position: absolute;
+  left: 0;
+  transition: transform var(--transition-smooth), top var(--transition-smooth), bottom var(--transition-smooth), background-color var(--transition-smooth);
+}
+
+.menu-bar:first-child {
+  top: 2px;
+}
+
+.menu-bar:last-child {
+  bottom: 2px;
+}
+
+/* Toggle transformations */
+.mobile-menu-toggle[aria-expanded="true"] .menu-bar:first-child {
+  transform: rotate(45deg);
+  top: 8px;
+}
+
+.mobile-menu-toggle[aria-expanded="true"] .menu-bar:last-child {
+  transform: rotate(-45deg);
+  bottom: 8px;
+}
+
+/* ==========================================================================
+   6. Mobile Overlay Navigation
+   ========================================================================== */
+.mobile-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: var(--bg-color);
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  transform: translateY(-100%);
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  visibility: hidden;
+}
+
+.mobile-nav.open {
+  transform: translateY(0);
+  visibility: visible;
+}
+
+.mobile-nav-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+}
+
+.mobile-nav-link {
+  font-family: var(--font-serif);
+  font-size: 2.2rem;
+  font-weight: 400;
+  color: var(--text-primary);
+  transition: color var(--transition-smooth);
+}
+
+.mobile-nav-link:hover,
+.mobile-nav-link:active {
+  color: var(--accent-color);
+}
+
+/* ==========================================================================
+   7. Section 1: Hero (Full Viewport Height)
+   ========================================================================== */
+.hero-section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  background-color: var(--bg-color);
+  padding-top: var(--header-desktop-height);
+  box-sizing: border-box;
+}
+
+.hero-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  flex-grow: 1;
+}
+
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+/* Minimal editorial scroll indicator */
+.hero-scroll-indicator {
+  position: absolute;
+  bottom: 40px;
+  left: 24px;
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.scroll-arrow {
+  font-size: 1.1rem;
+  color: var(--accent-color);
+}
+
+/* ==========================================================================
+   8. Section 2: What We Do
+   ========================================================================== */
+.what-we-do .section-main {
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+}
+
+.practice-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 48px;
+}
+
+.practice-card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Proprietary CIE Proof Section styling */
+.cie-proof-box {
+  margin-top: 40px;
+  padding-top: 64px;
+  border-top: 1px solid var(--border-color);
+}
+
+.cie-paragraph {
+  font-family: var(--font-serif);
+  font-size: clamp(1.1rem, 2vw, 1.3rem);
+  line-height: 1.6;
+  color: var(--text-secondary);
+  max-width: 800px;
+}
+
+/* ==========================================================================
+   9. Section 3: How We Work
+   ========================================================================== */
+.how-we-work .section-main {
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+}
+
+.principles-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 72px 64px;
+}
+
+.principle-item {
+  display: flex;
+  gap: 28px;
+}
+
+.principle-number {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  line-height: 0.9;
+  font-weight: 400;
+  color: var(--accent-color);
+  flex-shrink: 0;
+}
+
+.principle-content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* ==========================================================================
+   10. Section 4: Selected Clients (Statement of Integrity)
+   ========================================================================== */
+.selected-clients {
+  background-color: var(--bg-color);
+}
+
+/* ==========================================================================
+   11. Section 5: About (Selective Scale & Prague Root)
+   ========================================================================== */
+.about-content {
+  max-width: 680px;
+}
+
+/* ==========================================================================
+   12. Section 6: Contact (Get In Touch)
+   ========================================================================== */
+.contact {
+  padding-top: 200px;
+  padding-bottom: 220px;
+}
+
+.contact-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.contact-title {
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  margin-bottom: 24px;
+}
+
+.contact-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.contact-body-intro {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+}
+
+.contact-email {
+  font-family: var(--font-serif);
+  font-size: clamp(1.8rem, 4.5vw, 3.4rem);
+  line-height: 1.1;
+  color: var(--accent-color);
+  font-weight: 400;
+  margin: 12px 0 24px 0;
+}
+
+.contact-details {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+}
+
+.contact-linkedin {
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.contact-linkedin:hover {
+  color: var(--accent-color);
+}
+
+.contact-separator {
+  color: var(--border-color);
+}
+
+/* ==========================================================================
+   13. Footer (Minimal s.r.o. Details)
+   ========================================================================== */
+.site-footer {
+  border-top: 1px solid var(--border-color);
+  padding: 40px 0;
+  background-color: var(--bg-color);
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-separator {
+  margin: 0 4px;
+  color: var(--border-color);
+}
+
+/* ==========================================================================
+   14. Responsive Media Queries
+   ========================================================================== */
+
+/* Tablet view styling: 769px to 1024px */
+@media (max-width: 1024px) {
+  :root {
+    --container-max-width: 900px;
+  }
+  
+  .grid-container {
+    gap: 32px;
+  }
+  
+  .section-aside {
+    grid-column: span 12;
+  }
+  
+  .section-main {
+    grid-column: span 12;
+  }
+  
+  .practice-cards-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  
+  .section {
+    padding-top: 100px;
+    padding-bottom: 100px;
+  }
+}
+
+/* Large Mobile / Standard Tablet sizing */
+@media (max-width: 900px) {
+  .practice-cards-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  
+  .principles-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
+
+/* Standard Mobile / Touch devices */
+@media (max-width: 768px) {
+  body {
+    font-size: 16px; /* 16px mobile body copy per UX brief specs */
+  }
+
+  .site-header {
+    height: var(--header-mobile-height);
+    background-color: var(--bg-color); /* Maintain solid warm off-white on mobile header */
+  }
+  
+  .header-container {
+    padding: 0 20px;
+  }
+  
+  /* Hide desktop menu, show hamburger */
+  .desktop-nav {
+    display: none;
+  }
+  
+  .mobile-menu-toggle {
+    display: block;
+  }
+  
+  .section {
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+  
+  .grid-container {
+    gap: 24px;
+  }
+  
+  .hero-section {
+    padding-top: var(--header-mobile-height);
+  }
+  
+  .hero-content {
+    gap: 24px;
+  }
+  
+  .hero-scroll-indicator {
+    display: none; /* Hide on mobile to prioritize headline first view */
+  }
+  
+  .cie-proof-box {
+    margin-top: 12px;
+    padding-top: 36px;
+  }
+  
+  .contact {
+    padding-top: 80px;
+    padding-bottom: 100px;
+  }
+  
+  .footer-container {
+    flex-direction: column;
+    gap: 16px;
+    text-align: center;
+  }
+}
+
+/* Extra small mobile adjustments */
+@media (max-width: 480px) {
+  .header-container {
+    padding: 0 16px;
+  }
+  
+  .principle-item {
+    gap: 18px;
+  }
+}
