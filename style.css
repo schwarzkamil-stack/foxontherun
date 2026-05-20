@@ -563,6 +563,9 @@ p {
 }
 
 .founder-bio {
+  font-family: var(--font-sans);
+  font-size: 1.05rem;
+  line-height: 1.65;
   color: var(--text-primary);
   margin-bottom: 20px;
 }
